@@ -1,0 +1,79 @@
+REDIS : you could use https://try.redis.io/ for testing your code in mode interactive
+> set usuario:nome Jairo
+OK
+> set usuario:sobrenome Monassa
+OK
+> get usuario:nome
+"Jairo"
+> strlen usuario:nome
+(integer) 5
+> type usuario:sobrenome
+"string"
+> set views:qtde 100
+OK
+> incr views:qtd
+(integer) 1
+> incrby 10 views:qtd
+(error) ERR value is not an integer or out of range
+> incrby views:qtd 10
+(integer) 11
+> get views:qtd
+"11"
+> del usuario:sobrenome
+(integer) 1
+> exists usuario:nome
+(integer) 1
+> exists usuario:sobrenome
+(integer) 0
+> expire views:qtd 3600
+(integer) 1
+> ttl views:qtde
+(integer) -1
+> ttl views:qtd
+(integer) 3560
+> ttl views:qtd
+(integer) 3549
+> ttl usuario:nome
+(integer) -1
+> get usuario:nome
+"Jairo"
+> persist views:qtd
+(integer) 1
+> ttl views:qtd
+(integer) -1
+
+> rpush lista primeiro
+(integer) 1
+> rpush lista segundo
+(integer) 2
+> lpush lista novoPrimeiro
+(integer) 3
+> rpush lista ultimo
+(integer) 4
+> lrange lista 0 -1
+1) "novoPrimeiro"
+2) "primeiro"
+3) "segundo"
+4) "ultimo"
+> lrange lista 0 5
+1) "novoPrimeiro"
+2) "primeiro"
+3) "segundo"
+4) "ultimo"
+> lpop lista
+"novoPrimeiro"
+> lrange lista 0 5
+1) "primeiro"
+2) "segundo"
+3) "ultimo"
+> rpop lista
+"ultimo"
+> lrange lista 0 5
+1) "primeiro"
+2) "segundo"
+> lpop lista
+"primeiro"
+> lpop lista
+"segundo"
+> lpop lista
+(nil)
